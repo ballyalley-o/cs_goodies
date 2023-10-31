@@ -10,7 +10,18 @@ namespace C_sandbox
         static double num2 = 1;
         static void Main(string[] args)
         {
-            
+            BankAccount bankAccount = new BankAccount();
+            bankAccount.AddToBalance(100);
+            double bankBalance = bankAccount.Balance;
+
+           Console.WriteLine(bankBalance);
+
+            KidsBankAccount kidsBankAccount = new KidsBankAccount();
+            kidsBankAccount.AddToBalance(20);
+
+            Console.WriteLine(kidsBankAccount.Balance);
+
+            Console.ReadLine();
         }
     }
 
