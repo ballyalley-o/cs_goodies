@@ -1,4 +1,5 @@
-﻿using System;
+﻿using C_sandbox.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace C_sandbox.Classes
 {
-    public class BankAccount
+    public class BankAccount : IInformation
     {
         private double balance;
         public double Balance
@@ -34,11 +35,21 @@ namespace C_sandbox.Classes
 
         }
 
+        public BankAccount(double initialBalance)
+        {
+            Balance = initialBalance; 
+        }
+
      
-        public double AddToBalance(double balanceToBeAdded)
+        public virtual double AddToBalance(double balanceToBeAdded)
         {
             Balance += balanceToBeAdded;
             return Balance;
+        }
+
+        public string GetInformation()
+        {
+            return $"Your current balance is {Balance:c}";
         }
     }
 
@@ -47,6 +58,15 @@ namespace C_sandbox.Classes
         public KidsBankAccount()
         {
             Balance = 10;
+        }
+
+        public override double AddToBalance(double balanceToBeAdded)
+        {
+            if(balanceToBeAdded > 1000)
+                balanceToBeAdded = 1000;
+            if (balanceToBeAdded < -1000)
+                balanceToBeAdded = -1000;
+            return base.AddToBalance(balanceToBeAdded);
         }
     }
 }
